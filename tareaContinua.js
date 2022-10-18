@@ -2,34 +2,56 @@
 let contacto1=["Maxwell Wrigth", "(0191)7196495","Curabitur.egestas.nunc@nonummyac.co.uk"];
 let contacto2=[ "Raja Villareal","0866 398 2895", "posure.vulputate@sed.com"]
 let contacto3=["Helen Richards","0800 1111","libero@convallis.edu"];
-//creo la lista contactos y le añado 3 contactos
-let listaContacto=[contacto1,contacto2,contacto3];
-
-//nos pide crear el 4 contacto
 let contacto4=["Maisie Haley","0913 531 3030","risus.Quisque@urna.ca"];
-//metemos el 4 contacto el la lista de contactos
-listaContacto.push(contacto4);
+let listaContacto=[contacto1,contacto2,contacto3,contacto4];
 
 
-contacto5=[String(prompt("Nombre y apellido")),String(prompt("Numero telefono")),String(prompt("Correo electronico"))];
-listaContacto.push(contacto5);
-//bucle para enseñar los contactos
-for(let i=0;i<listaContacto.length;i++){
-    //if para enseñar el primero y el ultimo
-    if(i==0||i==listaContacto.length-1){
-        document.write("<p style=\"color:white\">")
-        let mostrar="";
-        for(let j=0;j<listaContacto[i].length;j++){
-            if(j<listaContacto[i].length-1)
-                mostrar=mostrar+listaContacto[i][j]+" / ";
-            else
-                mostrar=mostrar+listaContacto[i][j];
-            }//for(j)
-        document.write(mostrar);
-        console.log(mostrar);
-        alert(mostrar);
-        document.write("</p>")
-    }//if
 
-}//for (i)
+let texto="1- Mostrar 1º contacto\n2- Mostrar ultimo contacto\n3- Añadir nuevo contacto";
+
+
+do{
+    switch(Number(prompt(texto))){
+
+        case 1:
+            mostrarPantallaContactoElegido(0);
+            boleEror=false;
+            break;
+        case 2:
+            mostrarPantallaContactoElegido(listaContacto.length-1);
+            boleEror=false;
+            break;
+        case 3:
+            nuevoContacto=[String(prompt("Nombre y apellido")),String(prompt("Numero telefono")),String(prompt("Correo electronico"))];
+            listaContacto.push(nuevoContacto);
+            boleEror=false;
+            break;
+        default:
+            boleEror=true;
+            break;
+
+
+    }
+
+
+}while(boleEror)
+
+
+
+//bucle para enseñar el contacto elegido contactos
+function mostrarPantallaContactoElegido(i){
+    document.write("<h2 style=\"color:white\">Contacto "+(i+1)+"</h2>")
+    document.write("<p style=\"color:white\">")
+    let mostrar="";
+    for(let j=0;j<listaContacto[i].length;j++){
+        if(j<listaContacto[i].length-1)
+            mostrar=mostrar+listaContacto[i][j]+" / ";
+        else
+            mostrar=mostrar+listaContacto[i][j];
+        }//for(j)//para no escribir '/' en el ultimo elemento
+    document.write(mostrar);
+    console.log(mostrar);
+    alert(mostrar);
+    document.write("</p>");
+}
 
