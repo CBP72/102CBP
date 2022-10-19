@@ -9,41 +9,43 @@ let listaContacto=[contacto1,contacto2,contacto3,contacto4];
 do{
     let texto="1- Mostrar 1º contacto\n2- Mostrar ultimo contacto\n3- Mostrar todos los contactos\n4- Añadir nuevo contacto\n5- Salir del programa";
     salir=true;
-
+   
 
     do{
-        switch(Number(prompt(texto))){
+        let opcion=Number(prompt(texto));
+        
 
-            case 1:
+            if(opcion==1){ 
+                document.write("<h2>Primer contacto</h2>")
                 mostrarPantallaContactoElegido(0);
                 boleError=false;
-                break;
-            case 2:
+                
+            }
+            else if(opcion==2){
+                document.write("<h2>Ultimo contacto</h2>")
                 mostrarPantallaContactoElegido(listaContacto.length-1);
                 boleError=false;
-                break;
-            case 3:
+            }
+            else if(opcion==3){
+                document.write("<h2>Todos los contactos</h2>")
                 mostrarPantallaTodosContacto();
                 boleError=false;
-                break;
-            case 4:
-                nuevoContacto=[String(prompt("Nombre y apellido")),String(prompt("Numero telefono")),String(prompt("Correo electronico"))];
-                listaContacto.push(nuevoContacto);
+            }
+            else if(opcion==4){
+                addNewContact();
+                document.write("<h2>Contacto añadido</h2>")
                 mostrarPantallaContactoElegido(listaContacto.length-1);
                 boleError=false;
-                break;
-            case 5:
+            }
+            else if(opcion==5){
+
+                document.write("<h2>Programa finalizado</h2>")
                 salir=false;
                 boleError=false;
-                break;
-            default:
+            }
+            else{
                 boleError=true;
-                break;
-
-
-        }
-
-
+            }
     }while(boleError)
 }while(salir)
 
@@ -51,7 +53,6 @@ do{
 
 //bucle para enseñar el contacto elegido contactos
 function mostrarPantallaContactoElegido(i){
-    document.write("<h2>Contacto "+(i+1)+"</h2>")
     document.write("<p>")
     let mostrar="";
     for(let j=0;j<listaContacto[i].length;j++){
@@ -64,9 +65,9 @@ function mostrarPantallaContactoElegido(i){
     console.log(mostrar);
     alert(mostrar);
     document.write("</p>");
-}
+}// mostrarPantallaContactoElegido(i)
 
-function mostrarPantallaTodosContacto(){
+function showAllContacs(){
     for(let i=0;i<listaContacto.length;i++){
     document.write("<h2>Contacto "+(i+1)+"</h2>")
     
@@ -76,11 +77,28 @@ function mostrarPantallaTodosContacto(){
             mostrar=mostrar+listaContacto[i][j]+" / ";
         else
             mostrar=mostrar+listaContacto[i][j];
-        }
+        }//for(j)//para no escribir '/' en el ultimo elemento
     
    
     console.log(mostrar);
     alert(mostrar);
     document.write("<p>"+mostrar+"</p>");
-    }//for(j)//para no escribir '/' en el ultimo elemento
-}//for (i)
+    }//for (i)
+}//showAllContacs()
+
+function addNewContact(){
+
+    while(true){
+        let nombre=(String(prompt("Nombre y apellido")));
+        let numero=(String(prompt("Numero telefono (9 digitos)")));
+        let correo=(String(prompt("Correo electronico")));
+        if(nombre.length<2||numero.length<=9||correo.length<5){
+            alert("Uno de los campos es erroneo");
+        }else break;
+    }
+
+
+    nuevoContacto=[nombre,numero,correo];
+    listaContacto.push(nuevoContacto);
+    
+}
