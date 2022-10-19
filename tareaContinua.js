@@ -7,45 +7,80 @@ let listaContacto=[contacto1,contacto2,contacto3,contacto4];
 
 
 do{
-    let texto="1- Mostrar 1º contacto\n2- Mostrar ultimo contacto\n3- Mostrar todos los contactos\n4- Añadir nuevo contacto\n5- Salir del programa";
+    let texto="1- Mostrar 1º contacto\n2- Mostrar ultimo contacto\n3- Mostrar todos los contactos\n4- Añadir nuevo contacto\n5- Ordenar los contactos\n6- Salir del programa";
     salir=true;
    
 
     do{
-        let opcion=Number(prompt(texto));
         
+        switch(Number(prompt(texto))){
 
-            if(opcion==1){ 
+            case 1:
                 document.write("<h2>Primer contacto</h2>")
                 mostrarPantallaContactoElegido(0);
                 boleError=false;
+                break;
                 
-            }
-            else if(opcion==2){
+            
+            case 2:
                 document.write("<h2>Ultimo contacto</h2>")
                 mostrarPantallaContactoElegido(listaContacto.length-1);
                 boleError=false;
-            }
-            else if(opcion==3){
+                break;
+            
+            case 3:
                 document.write("<h2>Todos los contactos</h2>")
                 mostrarPantallaTodosContacto();
                 boleError=false;
-            }
-            else if(opcion==4){
+                break;
+            
+            case 4:
                 addNewContact();
                 document.write("<h2>Contacto añadido</h2>")
                 mostrarPantallaContactoElegido(listaContacto.length-1);
                 boleError=false;
-            }
-            else if(opcion==5){
+                break;
+            case 5:
+                window.re
+                do{
+                    let textoOrdenar="1- Ordenar por nombre\n2- Ordenar por telefono\n3- Ordenar por correo";
+                    switch(Number(prompt(textoOrdenar))){
+                        case 1:
+                            listaContacto.sort()
+                            errOrdenar=false;
+                            break;
+                        case 2:
+                            errOrdenar=false;
+                            break;
+                        case 3:
+                            errOrdenar=false;
+                            break;
+                        default:
+                            errOrdenar=true;
+                            break;
+
+                    }
+
+                }while(errOrdenar)
+
+
+
+
+
+
+                boleError=false;
+                break;
+            case 6:
 
                 document.write("<h2>Programa finalizado</h2>")
                 salir=false;
                 boleError=false;
-            }
-            else{
+                break;
+            
+            default:
                 boleError=true;
-            }
+                break;
+        }
     }while(boleError)
 }while(salir)
 
